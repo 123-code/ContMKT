@@ -1,25 +1,26 @@
 import logo from './logo.svg';
 import './App.css';
 
-function App() {
+import {ethers} from 'ethers';
+import tokens from '../Tokens.json'
+
+
+
+ function App() {
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <>
+   <h1> Car Marketplace </h1> 
+   <button onClick={connectwallet()}> Conectar Billetera </button>
+   </>
+  )
+}
+
+async function connectwallet(){
+const provider=new ethers.providers.Web3Provider(window.ethereum)
+await provider.send("eth_requestAccounts", []);
+
+const signer = provider.getSigner();
 }
 
 export default App;

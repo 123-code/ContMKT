@@ -18,6 +18,17 @@ constructor() ERC721("Minter","MN"){
 }
 
 mapping(address=>uint)minted;
+mapping(uint=>string)uris;
+
+function setUri(uint id,string uri)internal{
+    uris[id] = uri;
+}
+
+function tokenURI(uint token_id) public virtual override returns(string memory){
+string memory t_uri = uris[token_id];
+
+return t_uri;
+}
 
 function mint(address recipient, string memory uri ) public returns(uint){ 
     // current state of token ids;
@@ -26,6 +37,7 @@ function mint(address recipient, string memory uri ) public returns(uint){
     _ntokens.increment();
 _mint(recipient,newtoken);
     minted[msg.sender] +=1;
+    setUri(newtoken,uri);
 }
 
 

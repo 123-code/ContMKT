@@ -1,5 +1,5 @@
 
-pragma solidity ^ 0.4.3;
+pragma solidity ^ 0.7.4;
 
 contract Tokens{
 uint max_supply = 1000000000;

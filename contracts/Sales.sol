@@ -1,5 +1,5 @@
-pragma solidity ^ 0.4.0;
+pragma solidity ^ 0.7.4;
 
 contract Sales{
-    
+
 }

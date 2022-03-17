@@ -1,6 +1,6 @@
 // SPDX License-Identifier:MIT
 
-pragma solidity ^ 0.7.4;
+pragma solidity ^ 0.8.0;
 import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Votes.sol";
 
 contract Governance is ERC20Votes {
@@ -22,7 +22,7 @@ function _mint(address to,uint amount)internal override(ERC20Votes){
     super._mint(to,amount);
 }
 
-function _burn(address account,,uint amount)internal override(ERC20Votes){
+function _burn(address account,uint amount)internal override(ERC20Votes){
     super._burn(account,amount);
 }
 }

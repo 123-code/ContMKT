@@ -1,6 +1,6 @@
 
 // SPDX-License-Identifier: GPL-3.0
-pragma solidity ^ 0.7.4;
+pragma solidity ^ 0.8.0;
 
 import './Tokens.sol';
 
@@ -37,7 +37,7 @@ vendor.transfer(price);
 
 }
 
-function getavailable()public view returns(string){
+function getavailable()public view returns(string memory){
 
 }
 }

@@ -6,7 +6,6 @@ import {ethers} from 'ethers';
 import {useWeb3} from "@3rdweb/hooks";
 
 
-
  function App() {
 
 
@@ -26,7 +25,7 @@ import {useWeb3} from "@3rdweb/hooks";
   //console.log("Address",address); 
 if(typeof window.ethereum === 'undefined'){
 return (
-  <div>
+  <div className= "bg-slate-400" >
  <h1> Car Marketplace </h1> 
 <button onClick = {()=>connectWallet()} > Conectar Billetera </button>
  </div>

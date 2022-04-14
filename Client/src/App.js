@@ -14,7 +14,7 @@ import {useWeb3} from "@3rdweb/hooks";
   await provider.send("eth_requestAccounts",[]);
   const signer = provider.getSigner();
   console.log("signer:" + signer);
-  }
+  } 
   
 
 
@@ -30,6 +30,7 @@ return (
 <button onClick = {()=>connectWallet()} > Conectar Billetera </button>
  </div>
 )}
+
 
 else{
   return(

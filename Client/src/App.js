@@ -1,51 +1,32 @@
-import logo from './logo.svg';
+import  React from 'react';
 import './App.css';
-
-import {ethers} from 'ethers';
-//import tokens from './contracts/Tokens.json'
-import {useWeb3} from "@3rdweb/hooks";
-
-
- function App() {
-
-
-  async function connectWallet(){
-  const provider = new ethers.providers.Web3Provider(window.ethereum);
-  await provider.send("eth_requestAccounts",[]);
-  const signer = provider.getSigner();
-  console.log("signer:" + signer);
-  } 
-  
+import Main from './Pages/Main';
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+} from "react-router-dom";
+import Comprar from './Pages/Comprar';
+import Vender from './Pages/Vender';
 
 
-
-  
-  
-
-  //console.log("Address",address); 
-if(typeof window.ethereum === 'undefined'){
-return (
-  <div className= "bg-slate-400" >
- <h1> Car Marketplace </h1> 
-<button onClick = {()=>connectWallet()} > Conectar Billetera </button>
- </div>
-)}
-
-
-else{
-  return(
-    <>
-    <h1> Billetera Conectada </h1>
-
-    <button> Comprar Autos </button>
-    <button> Vender Autos </button>
-    </>
-  )
+export default class App extends React.Component {
+  render(){
+    return(
+     
+      <Router>
+         <div className="App">
+           
+        <Routes>
+          <Route path='/' element={<Main/>}/>
+          <Route path='/foro' element={<Comprar/>}/> 
+          <Route path='/nosotros' element={<Vender/>}/>
+        </Routes>
+        </div>
+        
+       
+      </Router>
+      
+    )
+  }
 }
-  
- }
-
-
-
-
-export default App;

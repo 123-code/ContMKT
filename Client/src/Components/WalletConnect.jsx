@@ -1,10 +1,11 @@
 import React,{useState,useEffect} from 'react';
 import {ethers} from 'ethers';
-import {AiOutlineWallet} from 'react-icons/ai';
 import {AiOutlineCheckCircle} from 'react-icons/ai';
+
 
 const WalletConnect = () => {
 let[conectada,setconectada] = useState(false);
+//let[buttontext,setbuttontext] = useState('Conectar Billetera');
 
 if (!window.ethereum) {
     alert('please install Metamask');
@@ -25,6 +26,14 @@ console.info(`signer:${signer},Address:${address}`);
 setconectada();
 }
 
+if(setconectada===true){
+    return(
+        <>
+    <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"> Conectada:{this.address} </button>
+    <AiOutlineCheckCircle/>
+        </>
+    );
+}
 return(
         <div>
         

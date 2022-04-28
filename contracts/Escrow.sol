@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: GPL-3.0
 pragma solidity ^0.8.4;
+import "@openzeppelin/contracts/ownership/Ownable.sol";
 
 contract Escrow{
    struct Buyer{
@@ -22,6 +23,10 @@ contract Escrow{
         address payable seller;
         bool paid;
     }
+
+mapping(Product=>address)public buyer;
+mapping(Product=>address)public seller;
+mapping(buyer=>seller)public sale;
 
     modifier requirepaid(){
         Product memory p;
@@ -48,13 +53,27 @@ contract Escrow{
     function setproductdata(uint _price,string memory _name,address payable _seller,bool _paid)public pure{
         Product({price:_price,name:_name,seller:_seller,paid:_paid});
     }
-
+// reference struct in function argument
     function buy(address seller,string memory product,uint price)public payable requirepaid{
+        Product p;
+        p.paid=true;
+        buyer[p]=msg.sender;
+    }
 
+    function checksent(address buyer) public onlyOwner returns(bool) {
+        Seller s;
+        sent=true;
+        return s.sent;
+    }
 
+     function checkpaid(address buyer) public onlyOwner returns(bool) {
+        Buyer b;
+        b.paid=true;
+        return b.paid;
     }
 
     function sell()public payable requiresent{
+        
 
     }
 }

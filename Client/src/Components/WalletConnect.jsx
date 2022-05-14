@@ -1,45 +1,55 @@
 import React,{useState,useEffect} from 'react';
-import {ethers} from 'ethers';
-import {AiOutlineCheckCircle} from 'react-icons/ai';
+import{ethers }from 'ethers';
+import {FaWallet} from 'react-icons/fa';
 
 
-const WalletConnect = () => {
-let[conectada,setconectada] = useState(false);
-//let[buttontext,setbuttontext] = useState('Conectar Billetera');
+const Connectbutton = ()=>{
 
-if (!window.ethereum) {
-    alert('please install Metamask');
-    console.info("error");
-    return;
-}
+   
 
-setconectada=()=>{
-    conectada = !conectada;
+   
+    let [address,setaddress] = useState("Conectar Billetera");
+   
+const conectar = async()=>{
+    if(!window.ethereum){
+        alert('No Web3 Detected');
+        console.info('No Web3 Detected');
+        return;
     }
+    else{
+        
+        try{
+           
+            const provider = new ethers.providers.Web3Provider(window.ethereum);
+            const signer = provider.getSigner();
+             address = signer.getAddress();
+            //setaddress(address);
+            await window.ethereum.request({method: 'eth_requestAccounts'});
+            
+            console.info(`conectada:${(await address).toString()}`);
+            console.info(`Conectada: ${address.toString()}`);
 
-const handleconnection = async()=>{
-const provider = new ethers.providers.Web3Provider(window.ethereum);
-await provider.send("eth_requestAccounts", []);
-const signer = provider.getSigner();
-const address = await signer.getAddress();
-console.info(`signer:${signer},Address:${address}`);
-setconectada();
+        
+           if(provider){setaddress(`Conectada: ${(await address).toString()}`);}
+           else{setaddress("Conectar Billetera");}
+            
+       
+                //{provider ? `) : setaddress("Conectar Billetera")}
+            
+  
+        } catch(err){
+            console.info(err);
+        }
+       
+    }
 }
 
-if(setconectada===true){
-    return(
-        <>
-    <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"> Conectada:{this.address} </button>
-    <AiOutlineCheckCircle/>
-        </>
-    );
-}
+
+
 return(
-        <div>
-        
-        <button onClick={handleconnection} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"> Conectar Billetera </button>
-        
-        </div>
-    );
-}
-export default  WalletConnect;
+    <>
+        <button className=  "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={conectar}> <FaWallet/> {address}</button>
+    </>
+)
+}  
+export default Connectbutton;

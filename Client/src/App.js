@@ -10,13 +10,7 @@ import Navbar from './Components/Navbar';
 function App(){
   return(
     <div className="App">
-    <Router>
-    <Routes>
-      <Route path="/" element={ <Main/> } />
-      <Route path="comprar" element={ <Comprar/> } />
-      <Route path="vender" element={ <Vender/> } />
-    </Routes>
-    </Router>
+    <Main/>
   </div>
   )
 }

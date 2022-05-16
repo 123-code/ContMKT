@@ -5,6 +5,7 @@ import React from 'react';
 const Comprar = () => {
     return (
         <>
+            <h1>Comprar</h1>
         </>
     )
 }

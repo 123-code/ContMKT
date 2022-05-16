@@ -67,8 +67,8 @@ mapping(buyer=>seller)public sale;
     }
 
      function checkpaid(address buyer) public onlyOwner returns(bool) {
-        Buyer b;
-        b.paid=true;
+        Buyer b;  
+        b.paid=true;  
         return b.paid;
     }
 

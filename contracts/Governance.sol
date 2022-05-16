@@ -4,7 +4,7 @@ pragma solidity ^ 0.8.0;
 import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Votes.sol";
 
 contract Governance is ERC20Votes {
-    uint max_supply = 1000000000;
+   
 
     constructor() ERC20("Car-Token","CRT") ERC20Permit("Governance"){
         // mints one token to whoever can acces the contract.

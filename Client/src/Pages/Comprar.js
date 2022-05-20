@@ -6,6 +6,8 @@ import Minter from "artifacts/contracts/Minter.sol/Minter.json";
 // create Compra component
 
 const Comprar = () => {
+    const contractaddress = 0x5FbDB2315678afecb367f032d93F642f64180aa3;
+    
     useEffect(() => {})
     return (
         <>

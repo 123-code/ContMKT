@@ -1,8 +1,7 @@
-
 // SPDX-License-Identifier: GPL-3.0
-pragma solidity ^ 0.8.4;
+pragma solidity ^ 0.8.7;
+ 
 
-import "github.com/ethereum/dapp-bin/library/stringUtils.sol";
 
 contract Sales {
     mapping(address=>address)public sale;
@@ -12,14 +11,14 @@ contract Sales {
     mapping(address=>bool)public boughtcar;
     mapping(address=>bool)public soldcar;
 
-    struct Buyer{
-        address account;
+    struct  Buyer{
+        address payable account;
         string nombre;
 
     }
 
     struct  Seller{
-        address account;
+        address payable account;
         string nombre;
     }
 
@@ -28,6 +27,7 @@ contract Sales {
         string name;
         uint price;
         string license;
+        bool bought;
 
 
     }
@@ -44,36 +44,35 @@ Car[]public cars;
 Seller[] public sellers;
 Buyer[] public buyers;
 
-    function sellp(string memory _name,uint _price,string memory _license) public {
-cars.push(Car(_name,_price,_license));
+    function sellp(string memory _name,uint _price,string memory _license,bool _bought) public {
+cars.push(Car(_name,_price,_license,_bought));
 
     }
     // bugs aqui
 function buycar(string memory _name)public payable{
     for(uint i=0;i<cars.length;i++){
-        if(StringUtils.equal(cars[i].name,_name)){
+        if(keccak256(bytes(cars[i].name)) == keccak256(bytes(_name))){
             for(uint j=0;j<sellers.length;j++){
                 sellers[i].account.transfer(cars[i].price);
             }
         }
-    bought[Car[i]]=true;
+    
     boughtcar[msg.sender]=true;
     }
 
 }
-// se tiene que transferir token del auto aqui. 
+//se tiene que transferir token del auto aqui.
 //bugs aqui
 function sell(string memory _name)public CompBought{
     for(uint i=0;i<cars.length;i++){
-        if(cars[i].name == _name){
+        if(keccak256(bytes(cars[i].name)) == keccak256(bytes(_name))){
             for(uint j=0;j<buyers.length;j++){
                 buyers[i].account.transfer(cars[i].price);
             }
         }
     }
-    sold[Car.name] = true;
+   sold[true]=Car;
 }
 
 
-
- }
+}

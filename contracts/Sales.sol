@@ -7,7 +7,7 @@ contract Sales {
     mapping(address=>address)public sale;
     ///
     mapping(bool=>Car)public bought;
-    mapping(bool=>Car)public sold;
+    mapping(string=>bool)public sold;
     mapping(address=>bool)public boughtcar;
     mapping(address=>bool)public soldcar;
 
@@ -28,6 +28,7 @@ contract Sales {
         uint price;
         string license;
         bool bought;
+        address seller;
 
 
     }
@@ -44,15 +45,18 @@ Car[]public cars;
 Seller[] public sellers;
 Buyer[] public buyers;
 
-    function sellp(string memory _name,uint _price,string memory _license,bool _bought) public {
-cars.push(Car(_name,_price,_license,_bought));
-
+function sellp(string memory _name,uint _price,string memory _license,bool _bought) public {
+    _bought = false;
+    cars.push(Car(_name,_price,_license,_bought,msg.sender));
+      
     }
     // bugs aqui
+    // buscar en el arreglo de structs el carro con el nombre, si esta ahi, bis
 function buycar(string memory _name)public payable{
     for(uint i=0;i<cars.length;i++){
         if(keccak256(bytes(cars[i].name)) == keccak256(bytes(_name))){
             for(uint j=0;j<sellers.length;j++){
+                if(cars[i].seller == sellers[j].account)
                 sellers[i].account.transfer(cars[i].price);
             }
         }
@@ -61,18 +65,34 @@ function buycar(string memory _name)public payable{
     }
 
 }
-//se tiene que transferir token del auto aqui.
+// se tiene que transferir token del auto aqui. 
 //bugs aqui
 function sell(string memory _name)public CompBought{
     for(uint i=0;i<cars.length;i++){
         if(keccak256(bytes(cars[i].name)) == keccak256(bytes(_name))){
+            
             for(uint j=0;j<buyers.length;j++){
                 buyers[i].account.transfer(cars[i].price);
             }
         }
     }
-   sold[true]=Car;
+   
 }
 
 
+// testing function
+function getcarinfo()public view returns(string memory){
+
+for(uint i=0;i<cars.length;i++){
+    string memory names= cars[i].name;
+    return names;
+
 }
+}   
+
+
+}
+
+// cars being saved.
+// cars being retrieved.
+

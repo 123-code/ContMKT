@@ -1,36 +1,80 @@
-// SPDX-License-Identifier: UNLICENSED  
-pragma solidity ^ 0.8.0;
+// SPDX-License-Identifier: GPL-3.0
+pragma solidity ^ 0.8.7;
+ 
 
-import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
-contract Minter is ERC20{
+
+contract Sales {
+    mapping(address=>address)public sale;
+    ///
+    mapping(bool=>Car)public bought;
+    mapping(string=>bool)public sold;
+    mapping(address=>bool)public boughtcar;
+    mapping(address=>bool)public soldcar;
+
+    struct  Buyer{
+        address payable account;
+        string nombre;
+
+    }
+
+    struct  Seller{
+        address payable account;
+        string nombre;
+    }
+
+
+    struct Car{
+        string name;
+        uint price;
+        string license;
+        bool bought;
+        address seller;
+
+
+    }
+
+modifier CompBought{
+    require(boughtcar[msg.sender]==true,"No se ha comprado un auto!"); _;
+}
+
+modifier CompSold{
+    require(soldcar[msg.sender]==true,"No se ha vendido un auto!"); _;
+}
+
+Car[]public cars;
+Seller[] public sellers;
+Buyer[] public buyers;
+
+    function sellp(string memory _name,uint _price,string memory _license,bool _bought) public {
+cars.push(Car(_name,_price,_license,_bought,msg.sender));
+
+    }
+    // bugs aqui
+    // buscar en el arreglo de structs el carro con el nombre, si esta ahi, bis
+function buycar(string memory _name)public payable{
+    for(uint i=0;i<cars.length;i++){
+        if(keccak256(bytes(cars[i].name)) == keccak256(bytes(_name))){
+            for(uint j=0;j<sellers.length;j++){
+                if(cars[i].seller == sellers[j].account)
+                sellers[i].account.transfer(cars[i].price);
+            }
+        }
     
+    boughtcar[msg.sender]=true;
+    }
 
-constructor()ERC20("mycar","MYC"){
-    
 }
-
-mapping(address => bool)public bought;
-mapping(address=>uint)public balances;
-
-function setcomprado() internal{
-bought[msg.sender] = true;
-balances[msg.sender] +=1;
-}
-
-
-modifier comprado() {
-    require(bought[msg.sender]==true,"No se ha comprado un auto!");
-    _;
-}
-
-
-
-function _mint(address to,uint amount) internal comprado  override(ERC20) {
-    super._mint(to,amount);
-}
-
-function checkbalance()internal view returns(uint){
-return balances[msg.sender];
+// se tiene que transferir token del auto aqui. 
+//bugs aqui
+function sell(string memory _name)public CompBought{
+    for(uint i=0;i<cars.length;i++){
+        if(keccak256(bytes(cars[i].name)) == keccak256(bytes(_name))){
+            for(uint j=0;j<buyers.length;j++){
+                buyers[i].account.transfer(cars[i].price);
+            }
+        }
+    }
+   
 }
 
 

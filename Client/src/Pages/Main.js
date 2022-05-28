@@ -1,7 +1,8 @@
 import React from 'react';
 import WalletConnect from '../Components/WalletConnect.jsx';
 import Comprar from '../Pages/Comprar';
-import { Link } from 'react-router-dom';
+import Vender from '../Pages/Vender';
+
 
 const Main = () => {
     return (
@@ -11,17 +12,19 @@ const Main = () => {
 
         <div>
             <h2> Ingresar Como </h2>
-            <div>
-              <Link to= {<Comprar/>}/>
+        <form action = "../Pages/Comprar">
             <button className = "bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded" > Comprador</button> 
-            </div>
+         </form>
           
-          <div>
-          <Link to="/vender"/>
+      <form action='../Pages/Vender'>
+
+ 
           <button className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"> Vendedor </button>
-          </div>
+      </form>
 
         </div>
+
+
         </div>
     );
 }

@@ -67,14 +67,15 @@ function buycar(string memory _name)public payable{
 }
 // se tiene que transferir token del auto aqui. 
 //bugs aqui
-function sell(string memory _name)public CompBought{
+function sell(string memory _name)public CompBought returns(bool){
     for(uint i=0;i<cars.length;i++){
         if(keccak256(bytes(cars[i].name)) == keccak256(bytes(_name))){
-            
+            return true;
             for(uint j=0;j<buyers.length;j++){
                 buyers[i].account.transfer(cars[i].price);
             }
         }
+        return false;
     }
    
 }

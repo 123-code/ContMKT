@@ -9,7 +9,7 @@
     "hardhat": "^2.8.0"
   },
   "dependencies": {
-    "@openzeppelin/contracts": "^4.5.0",
+    "@openzeppelin/contracts": "^4.6.0",
     "dotenv": "^16.0.1",
     "env": "^0.0.2",
     "solc": "^0.8.12"

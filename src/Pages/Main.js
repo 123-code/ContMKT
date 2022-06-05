@@ -1,7 +1,7 @@
 import React from 'react';
 import WalletConnect from '../Components/WalletConnect.jsx';
-import Comprar from '../Pages/Comprar';
-import Vender from '../Pages/Vender';
+import Comprar from './Comprar';
+import Vender from './Vender';
 
 
 const Main = () => {

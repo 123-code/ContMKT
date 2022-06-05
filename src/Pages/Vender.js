@@ -8,12 +8,12 @@ const Vender = ()=>{
     return(
         <>
         <h1> Vende tu auto con nosotros.</h1>
-        <div classNmae = "form">
+        <div className = "form">
 
         </div>
         </>
     )
 
-}
+} 
 
 export default Vender;

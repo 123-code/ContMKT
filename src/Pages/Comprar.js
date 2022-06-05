@@ -1,9 +1,8 @@
 import React,{useEffect} from 'react';
 import { ethers } from 'ethers';
 
-import Form from '../Components/Form.jsx';
+import Form from '../Components/Form';
 
-// create Compra component
 
 const Comprar = ()=>{
     return(

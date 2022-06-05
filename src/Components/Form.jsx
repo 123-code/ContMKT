@@ -1,12 +1,9 @@
 import React,{useState} from 'react';
 import { ethers } from 'ethers';
-import Minter from "../artifacts/contracts/Minter.sol/Minter.json";
-import Gallery from '../Components/Gallery.jsx';
+import Gallery from './Gallery.jsx';
+ 
+import contractsales from "./src/Components/artifacts/contracts/Sales.sol/Sales.json"
 
-
-const provider = new ethers.providers.Web3Provider(window.ethereum)
-const contractaddress = 0x5FbDB2315678afecb367f032d93F642f64180aa3;
-let contractsales= ethers.Contract(contractaddress,Minter.abi,provider);
 
 
 const Form =(props)=>{

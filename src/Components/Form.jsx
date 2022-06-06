@@ -1,10 +1,15 @@
 import React,{useState} from 'react';
 import { ethers } from 'ethers';
 import Gallery from './Gallery.jsx';
- 
-import contractsales from "./src/Components/artifacts/contracts/Sales.sol/Sales.json"
+import { Sales,salesabi } from '../constants/index.js';
+import WalletConnect from './WalletConnect';
+//Car-Marketplace/src/constants/index.js
 
-
+const SalesContract = new Contract(
+    Sales,
+    salesabi,
+    
+)
 
 const Form =(props)=>{
     

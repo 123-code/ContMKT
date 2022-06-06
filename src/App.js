@@ -6,6 +6,7 @@ import Comprar from './Pages/Comprar';
 import Vender from './Pages/Vender';
 import Navbar from './Components/Navbar';
 import NotFound from './Pages/NotFound';
+import { Sales,salesabi } from './constants/index.js';
  
 function App() {
   return (

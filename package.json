@@ -5,9 +5,11 @@
   "dependencies": {
     "@3rdweb/hooks": "^1.9.2",
     "@craco/craco": "^6.4.3",
+    "@openzeppelin/contracts": "^4.6.0",
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
+    "hardhat": "^2.9.7",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-icons": "^4.4.0",
@@ -41,12 +43,17 @@
     ]
   },
   "devDependencies": {
+    "@nomiclabs/hardhat-ethers": "^2.0.6",
+    "@nomiclabs/hardhat-waffle": "^2.0.3",
     "@tailwindcss/forms": "^0.5.0",
     "@tailwindcss/postcss7-compat": "^2.2.17",
     "autoprefixer": "^9.8.8",
+    "chai": "^4.3.6",
+    "ethereum-waffle": "^3.4.4",
+    "ethers": "^5.6.8",
     "postcss": "^8.0.0",
     "postcss-flexbugs-fixes": "^5.0.2",
     "postcss-preset-env": "^7.4.3",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.17"
   }
-} 
+}

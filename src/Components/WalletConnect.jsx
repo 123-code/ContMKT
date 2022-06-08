@@ -2,13 +2,16 @@ import React,{useState,useEffect} from 'react';
 import{ethers }from 'ethers';
 import {FaWallet} from 'react-icons/fa';
 
+export const signer = "";
 
 const Connectbutton = ()=>{
+    
 
    
 
    
     let [address,setaddress] = useState("Conectar Billetera");
+   
    
 const conectar = async()=>{
     if(!window.ethereum){
@@ -21,7 +24,7 @@ const conectar = async()=>{
         try{
            
             const provider = new ethers.providers.Web3Provider(window.ethereum);
-            const signer = provider.getSigner();
+             signer = provider.getSigner();
              address = signer.getAddress();
             //setaddress(address);
             await window.ethereum.request({method: 'eth_requestAccounts'});

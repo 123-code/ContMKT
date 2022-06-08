@@ -1,29 +1,34 @@
 import React,{useState} from 'react';
 import { ethers } from 'ethers';
 import Gallery from './Gallery.jsx';
+import { providers, Contract } from "ethers";
 import { Sales,salesabi } from '../constants/index.js';
-import WalletConnect from './WalletConnect';
+import WalletConnect,{signer} from './WalletConnect';
+
 //Car-Marketplace/src/constants/index.js
 
-const SalesContract = new Contract(
-    Sales,
-    salesabi,
-    
-)
+
 
 const Form =(props)=>{
-    
+
+    const SalesContract = new Contract(
+        Sales,
+        salesabi,
+        signer
+
+    )
+     
     
 return(
     <>
     {props==="Comprar"? ()=>{
         
         return (
-             <> <div> <Formcomprar/>  </div>  <div> <Gallery/> </div>  </>
+             <> <div> <Formcomprar SalesContract/>  </div>  <div> <Gallery/> </div>  </>
              
              )
         
-        }:<Formvender/>}
+        }:<Formvender SalesContract/>}
 
     </>
 
@@ -31,7 +36,7 @@ return(
 } 
 export default Form;
 
- export const Formcomprar = ()=>{
+ export const Formcomprar = (props)=>{
     let[value,setvalue] = useState("");
     return(
         <div className='form'>
@@ -40,14 +45,14 @@ export default Form;
             <h2>Buscar por Marca</h2>
 
          <input  value={value} type="text" label="Marca" onChange={event=>{let value = React.Event.Form.target(event); setvalue(_ => value)}}/>
-         <button onClick={contractsales.buycar(value)}/>
-         {contractsales.buycar(value === true ? <h2> Realizando Compra </h2> : <h2> El auto no esta a la venta</h2>)}
+         <button onClick={props.buycar(value)}/>
+         {props.buycar(value === true ? <h2> Realizando Compra </h2> : <h2> El auto no esta a la venta</h2>)}
         </div>
     )
 }
 
- export const Formvender=()=>{
-     let [valuem,setvaluem] = useState("");
+ export const Formvender=(props)=>{
+     let[valuem,setvaluem] = useState("");
      let[valuep,setvaluep] = useState("");
      let[valuepl,setvaluepl] = useState("");
     return(
@@ -69,9 +74,9 @@ export default Form;
             <h2>Placa</h2>
             <input  value={valuepl} type="text" placeholder="Placa" onChange={event=>{let value = React.Event.Form.target(event); setvaluepl(value)}}/>
 
-            <button onClick={()=>{ try {contractsales.sellp(valuem,valuep,valuepl)} catch(err){<h2> No pudimos publicar tu auto !</h2>}}}> Publicar </button>
+            <button onClick={()=>{ try {props.sellp(valuem,valuep,valuepl)} catch(err){<h2> No pudimos publicar tu auto !</h2>}}}> Publicar </button>
             </div>
-
+ 
 
         </>
     )

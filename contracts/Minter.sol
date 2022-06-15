@@ -3,7 +3,7 @@ pragma solidity ^ 0.8.7;
  
 
 
-contract Sales {
+contract Minter {
     mapping(address=>address)public sale;
     ///
     mapping(bool=>Car)public bought;

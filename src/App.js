@@ -13,7 +13,7 @@ function App() {
     <div className="App bg-gray-300">
        
       <Routes>
-        <Route path="/main" element={ <Main/> } />
+        <Route path="/" element={ <Main/> } />
         <Route path="/comprar" element={ <Comprar/> } />
         <Route path="/vender" element={ <Vender/> } />
       </Routes>

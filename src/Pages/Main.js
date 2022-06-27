@@ -6,10 +6,10 @@ const Main = ()=>{
 
     return(
         <>
-        <div> <WalletConnect/> </div>
+        <div className = "inset-y-5"> <WalletConnect/> </div>
          <div>
             <h1>Carz</h1>
-            <h2> The decentralized Car Marketplace </h2>
+            <h2 className = "font-mono font-size: 1.25rem"> The decentralized Car Marketplace </h2>
             <h2> Buy and sell using your metamask wallet </h2>
         </div>
 

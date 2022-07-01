@@ -1,5 +1,6 @@
 import React from 'react';
 import WalletConnect from '../Components/WalletConnect.jsx';
+import Button from '../Components/Button.jsx';
 
 const Main = ()=>{
 
@@ -22,7 +23,7 @@ const Main = ()=>{
             <li className = "text-red-600 font-mono" >Your car, your terms</li>
             <li>You will own a part of the marketplace by joining the car buyer and seller community"</li>
             </ul>
-           
+          <Button Become a Member />
            
         </div>
 

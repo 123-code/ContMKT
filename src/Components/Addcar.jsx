@@ -25,10 +25,12 @@ const Marketplace = ()=>{
             <h1> Placa Auto:</h1>
             <input type="text" onChange={setvalues=(evt)=>values.license=evt.target.value}/>
 
+            <h1>{values.bought}</h1>
+    
        
 
         </form>
-        <input type="Submit" text="Save" onChange={Sales.sellp()}/>
+        <input type="button" text="Save" onChange={Sales.sellp()}/>
 
         </>
  

@@ -4,40 +4,46 @@ import{AiFillHome} from 'react-icons/ai';
 import {RiGovernmentLine} from 'react-icons/ri';
 import{MdOutlineSell} from 'react-icons/md';
 import{FiShoppingBag} from 'react-icons/fi';
+import { Link } from "react-router-dom";
 
 const Navbar = ()=>{
     return(
         <>
-     <li>
+<Link to="/" className = "font-mono text-slate-300 pt-6"> 
+<li>
 <AiFillHome className ='justify-items-start'/>
-<Link to="/" className = "font-mono text-slate-300 pt-6">Start</Link>
-     </li>
+HOME
+</li>
+</Link>
 
-     <li>
+
+<Link to="/member" className = "font-mono text-slate-300 pt-6"> 
+<li>
 <RiGovernmentLine className ='justify-items-start'/>
-<Link to="/" className = "font-mono text-slate-300 pt-6">Own a part of the marketplace</Link>
-     </li>
+BECOME A MEMBER OF CARZ
+</li>
+</Link>
 
-     <li>
-<RiGovernmentLine className ='justify-items-start'/>
-<Link to="/" className = "font-mono text-slate-300 pt-6">Own a part of the marketplace</Link>
-     </li>
 
-     <li>
+<Link to="/member" className = "font-mono text-slate-300 pt-6"> 
+<li>
 <MdOutlineSell className ='justify-items-start'/>
-<Link to="/" className = "font-mono text-slate-300 pt-6">Sell a car</Link>
-     </li>
-
-     <li>
-<FiShoppingBag className ='justify-items-start'/>
-<Link to="/" className = "font-mono text-slate-300 pt-6">Buy a car</Link>
-     </li>
-
-     FiShoppingBag
+BUY A CAR 
+</li>
+</Link>
 
 
+
+<Link to="/member" className = "font-mono text-slate-300 pt-6"> 
+<li>
+<MdOutlineSell className ='justify-items-start'/>
+SELL A CAR 
+</li>
+</Link>
 
         </>
 
     )
 }
+
+export default Navbar;

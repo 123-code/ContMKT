@@ -1,5 +1,4 @@
 import React,{useState} from 'react';
-
 import { Sales,salesabi } from "./artifacts/contracts/Sales.sol/Sales.json";
 import { ethers } from 'ethers';
 

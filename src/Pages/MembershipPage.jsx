@@ -1,5 +1,5 @@
 import React from 'react';
-import { Membership,membershipabi } from "./artifacts/contracts/Membership.sol/Membership.json";
+//import { Membership,membershipabi } from "./artifacts/contracts/Membership.sol/Membership.json";
 
 
 const MembershipPage = ()=>{

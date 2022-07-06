@@ -14,6 +14,7 @@ const Main = ()=>{
             <h2 className = "font-mono"> Buy and sell using your metamask wallet </h2>
         </div>
 
+
         <div>
  
             <h2 className = "text-red-600 font-mono"> How will Carz Work?</h2>

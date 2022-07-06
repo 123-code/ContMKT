@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React from 'react';
 import {GiHamburgerMenu} from 'react-icons/gi';
 import{AiFillHome} from 'react-icons/ai';
 import {RiGovernmentLine} from 'react-icons/ri';
@@ -25,7 +25,7 @@ BECOME A MEMBER OF CARZ
 </Link>
 
 
-<Link to="/member" className = "font-mono text-slate-300 pt-6"> 
+<Link to="/comprar" className = "font-mono text-slate-300 pt-6"> 
 <li>
 <MdOutlineSell className ='justify-items-start'/>
 BUY A CAR 
@@ -34,7 +34,7 @@ BUY A CAR
 
 
 
-<Link to="/member" className = "font-mono text-slate-300 pt-6"> 
+<Link to="/vender" className = "font-mono text-slate-300 pt-6"> 
 <li>
 <MdOutlineSell className ='justify-items-start'/>
 SELL A CAR 

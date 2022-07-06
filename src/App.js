@@ -12,9 +12,8 @@ import { Sales,salesabi } from './constants/index.js';
 function App() {
   return (
     <div className="App bg-gray-300">
-
       <Routes>
-      <Navbar/>
+    <Navbar/>
         <Route path="/" element={ <Main/> } />
         <Route path="/comprar" element={ <Comprar/> } />
         <Route path="/vender" element={ <Vender/> } />

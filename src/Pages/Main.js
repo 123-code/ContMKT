@@ -6,13 +6,11 @@ import form from './Components/Form';
 
 const Main = () => {
     return (
-        <div >
-            <
-       
-      </form>
-
+        <div>
 
         </div>
+            
+
     );
 }
 

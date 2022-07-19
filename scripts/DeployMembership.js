@@ -1,14 +1,18 @@
-async function main() {
-  const [deployer] = await ethers.getSigners();
+const hre = require("hardhat");
+//const ethers = require('hardhat');
+//const hre = require("hardhat");
 
-  console.log("Deploying contracts with the account:", deployer.address);
+async function main() {
+  const [deployer] = await hre.ethers.getSigners();
+
+ console.log("Deploying contracts with the account:", deployer.address);
 
   console.log("Account balance:", (await deployer.getBalance()).toString());
 
-  const Token = await ethers.getContractFactory("Membership1");
+  const Token = await hre.ethers.getContractFactory("Membership");
   const token = await Token.deploy();
 
-  console.log("Membership contract address:", token.address);
+  console.log("Membership Contract address:", token.address);
 }
 
 main()

@@ -1,7 +1,7 @@
 import React,{useEffect} from 'react';
 import { ethers } from 'ethers';
 
-import Form from '../Components/Form';
+
 
 
 const Comprar = ()=>{

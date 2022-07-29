@@ -16,11 +16,13 @@ const Marketplace = ()=>{
  
   
 const caradded = ()=>{
-    //Sales.sellp();
+    Sales.sellp(name,price,license,bought);
     setbought=() => bought=true;
     
     console.info("funcion corrio");
     console.info(bought);
+
+   
 } 
 
     return(
@@ -37,7 +39,7 @@ const caradded = ()=>{
             <input type="text" onChange={setlicense=(evt)=>license=evt.target.value}/>
 
             <h1>{bought}</h1>
-   <button onChange={Sales.sellp(name,price,license,bought)}> Post </button>
+   <button onChange={caradded}> Post </button>
 
         </form>
         

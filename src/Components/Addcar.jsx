@@ -39,7 +39,7 @@ const caradded = ()=>{
             <input type="text" onChange={setlicense=(evt)=>license=evt.target.value}/>
 
             <h1>{bought}</h1>
-   <button onChange={caradded}> Post </button>
+   <button onChange={caradded()}> Post </button>
 
         </form>
         
@@ -48,7 +48,7 @@ const caradded = ()=>{
         </>
  
     )
-
+  
 }
 //onChange={caradded()}
 export default Marketplace;

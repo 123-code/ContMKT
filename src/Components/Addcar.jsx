@@ -1,8 +1,9 @@
 import React,{useState} from 'react';
 import { Sales,salesabi } from '../constants/index.js';
-//Car-Marketplace/src/constants/index.js
 import { ethers } from 'ethers';
 import Button from "../Components/Button";
+import { signer } from "./WalletConnect.jsx";
+
 
 
 
@@ -16,13 +17,19 @@ const Marketplace = ()=>{
  
   
 const caradded = ()=>{
+ {signer === "" ? window.alert("No hay una Billetera Conectada!");}
+    const salescontract = new Contract(
+        Sales,
+        salesabi,
+
+
+    );
     Sales.sellp(name,price,license,bought);
     setbought=() => bought=true;
     
     console.info("funcion corrio");
     console.info(bought);
 
-   
 } 
 
     return(
@@ -48,6 +55,8 @@ const caradded = ()=>{
         </>
  
     )
+
+
   
 }
 //onChange={caradded()}

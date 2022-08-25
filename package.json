@@ -5,6 +5,7 @@
   "dependencies": {
     "@3rdweb/hooks": "^1.9.2",
     "@craco/craco": "^6.4.3",
+    "@nomicfoundation/hardhat-toolbox": "^1.0.2",
     "@openzeppelin/contracts": "^4.6.0",
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",

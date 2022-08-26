@@ -2,7 +2,7 @@ import React,{useState,useEffect} from 'react';
 import{ethers }from 'ethers';
 import {FaWallet} from 'react-icons/fa';
 
-export const signer = "";
+export let signer = "";
 
 const Connectbutton = ()=>{
     let [address,setaddress] = useState("Conectar Billetera");

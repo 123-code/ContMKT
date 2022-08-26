@@ -6,6 +6,7 @@ const Gallery = ()=>{
         <>
         <h1> Catalogo De Autos </h1>
         
+        
         </>
     )
 }

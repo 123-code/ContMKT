@@ -4,8 +4,10 @@ const Gallery = ()=>{
     const [data,setData] = useState([]);
     return(
         <>
+        <h1> Catalogo De Autos </h1>
+        
+        
         </>
     )
 }
 export default Gallery;
-

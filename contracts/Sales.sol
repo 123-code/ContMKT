@@ -1,15 +1,21 @@
 // SPDX-License-Identifier: GPL-3.0
 pragma solidity ^ 0.8.7;
- 
+
+import "@openzeppelin/contracts/access/Ownable.sol";
 
 
 contract Sales {
     mapping(address=>address)public sale;
     ///
     mapping(bool=>Car)public bought;
-    mapping(string=>bool)public sold;
     mapping(address=>bool)public boughtcar;
     mapping(address=>bool)public soldcar;
+    mapping(bool=>Car) public scar;
+    mapping(bool=>Car) public postcar;
+    mapping(string=>bool) public published;
+    mapping(string=>bool) public sold;
+
+
 
     struct  Buyer{
         address payable account;
@@ -65,6 +71,34 @@ function buycar(string memory _name)public payable{
     }
 
 }
+
+
+function postcar1(string memory _name,
+uint _price,
+string memory _license,
+bool _bought,
+address _seller) public returns(bool) {
+
+Car memory mycar = Car(_name,_price,_license,_bought,_seller);
+published[_license] = true;
+postcar[true] = mycar;
+
+
+
+        }
+
+function sellmycar(string memory _license, address payable  _from, address payable _to, uint _amount) public payable {
+require(published[_license] = true);
+
+(bool sent) = _to.call{value:_amount};
+
+
+
+}
+
+
+
+
 // se tiene que transferir token del auto aqui. 
 //bugs aqui
 function sell(string memory _name)public CompBought returns(bool){
@@ -91,9 +125,12 @@ for(uint i=0;i<cars.length;i++){
 }
 }   
 
+receive() external payable {}
+
+
+fallback() external payable {}
 
 }
 
 // cars being saved.
 // cars being retrieved.
-

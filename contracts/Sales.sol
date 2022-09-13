@@ -4,7 +4,7 @@ pragma solidity ^ 0.8.7;
 import "@openzeppelin/contracts/access/Ownable.sol";
 
 
-contract Sales {
+contract Sales is Ownable {
     mapping(address=>address)public sale;
     ///
     mapping(bool=>Car)public bought;
@@ -14,6 +14,7 @@ contract Sales {
     mapping(bool=>Car) public postcar;
     mapping(string=>bool) public published;
     mapping(string=>bool) public sold;
+    mapping(string=>Car) public info;
 
 
 
@@ -47,28 +48,11 @@ modifier CompSold{
     require(soldcar[msg.sender]==true,"No se ha vendido un auto!"); _;
 }
 
-Car[]public cars;
-Seller[] public sellers;
-Buyer[] public buyers;
-
-function sellp(string memory _name,uint _price,string memory _license,bool _bought) public {
-    _bought = false;
-    cars.push(Car(_name,_price,_license,_bought,msg.sender));
-      
-    }
-    // bugs aqui
-    // buscar en el arreglo de structs el carro con el nombre, si esta ahi, bis
-function buycar(string memory _name)public payable{
-    for(uint i=0;i<cars.length;i++){
-        if(keccak256(bytes(cars[i].name)) == keccak256(bytes(_name))){
-            for(uint j=0;j<sellers.length;j++){
-                if(cars[i].seller == sellers[j].account)
-                sellers[i].account.transfer(cars[i].price);
-            }
-        }
-    
-    boughtcar[msg.sender]=true;
-    }
+function buycar(string memory _name,uint _price,string memory _license,bool _bought,address _seller)public payable returns(bool){
+require(published[_license]=true,"Car does not exist");
+ Car memory _buycar = Car(_name,_price,_license,_bought,_seller);
+ _seller.call{value:_price}("");
+boughtcar[msg.sender]=true;
 
 }
 
@@ -82,48 +66,20 @@ address _seller) public returns(bool) {
 Car memory mycar = Car(_name,_price,_license,_bought,_seller);
 published[_license] = true;
 postcar[true] = mycar;
+}
 
-
-
-        }
-
-function sellmycar(string memory _license, address payable  _from, address payable _to, uint _amount) public payable {
+function sellmycar(string memory _license, address payable  _from, address payable _to, uint _amount) public payable onlyOwner {
 require(published[_license] = true);
+require(sold[_license] = false);
+_to.call {value:_amount}("");
+sold[_license] = true;
+}
 
-(bool sent) = _to.call{value:_amount};
-
-
+function getcarinfo(string memory  _license) public view returns(Car memory){
+return info[_license];
 
 }
 
-
-
-
-// se tiene que transferir token del auto aqui. 
-//bugs aqui
-function sell(string memory _name)public CompBought returns(bool){
-    for(uint i=0;i<cars.length;i++){
-        if(keccak256(bytes(cars[i].name)) == keccak256(bytes(_name))){
-            return true;
-            for(uint j=0;j<buyers.length;j++){
-                buyers[i].account.transfer(cars[i].price);
-            }
-        }
-        return false;
-    }
-   
-}
-
-
-// testing function
-function getcarinfo()public view returns(string memory){
-
-for(uint i=0;i<cars.length;i++){
-    string memory names= cars[i].name;
-    return names;
-
-}
-}   
 
 receive() external payable {}
 
@@ -131,6 +87,3 @@ receive() external payable {}
 fallback() external payable {}
 
 }
-
-// cars being saved.
-// cars being retrieved.

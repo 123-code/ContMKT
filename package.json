@@ -5,8 +5,9 @@
   "dependencies": {
     "@3rdweb/hooks": "^1.9.2",
     "@craco/craco": "^6.4.3",
+    "@metamask/detect-provider": "^1.2.0",
     "@nomicfoundation/hardhat-toolbox": "^1.0.2",
-    "@openzeppelin/contracts": "^4.6.0",
+    "@openzeppelin/contracts": "^4.7.3",
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
@@ -21,7 +22,8 @@
     "react-scripts": "5.0.0",
     "reactjs-popup": "^2.0.5",
     "util": "^0.12.4",
-    "web-vitals": "^2.1.2"
+    "web-vitals": "^2.1.2",
+    "web3modal": "^1.9.9"
   },
   "scripts": {
     "start": "craco start",

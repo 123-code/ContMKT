@@ -12,7 +12,7 @@ const Main = ()=>{
             <h1 className = "text-red-600 font-mono">Carz</h1>
             <h2 className = "font-mono font-size: 1.25rem text-red-600"> The decentralized Car Marketplace </h2>
             <h2 className = "font-mono"> Buy and sell using your metamask wallet </h2>
-        </div>
+        </div> 
 
 
         <div>

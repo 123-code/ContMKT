@@ -14,7 +14,7 @@ const Marketplace = ()=>{
     let[imagen,setimagen] = useState(false);
 
  
-  // info billetera no esta pasando 
+   
 const caradded = ()=>{
  signer === "" ? window.alert("No hay una Billetera Conectada!"):console.log("conectada")
     const salescontract = new ethers.Contract(

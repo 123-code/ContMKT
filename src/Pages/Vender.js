@@ -1,61 +1,88 @@
-import React,{useEffect} from 'react';
-import { ethers } from 'ethers';
+import React,{useState,useEffect,useRef} from 'react';
+import ethers, { Contract }  from 'ethers';
 import Addcar from '../Components/Addcar';
-import {Sales,salesabi} from '../constants/index.js';
+import {SALESCONTRACTADDRESS,SALESCONTRACTABI} from '../constants/index.js';
 import detectEthereumProvider from '@metamask/detect-provider';
+import  Web3Modal from "web3modal";
+import { providers } from "ethers";
 
-
-
-const contractaddress = "0x5FbDB2315678afecb367f032d93F642f64180aa3";
+// mint a car nft as a post to the platform 
 
 const Vender = ()=>{
-    let[owner,setowner] = useState(false);
+    const Web3ModalRef = useRef();
+    const [walletConnected,setwalletConnected] = useState(false);
+    const [owner,setowner] = useState(false);
 
-    useEffect({
-        checkwalletconnected(); 
-    },[]);
 
-     
-    const checkwalletconnected = async ()=> {
-        const provider = await detectEthereumProvider();
-        if(provider){
-            setprovider(true);
-            console.log("Wallet connected!");
-            //const signer = web3Provider.getSigner();
-        }
+const getOwner = async()=>{
+    const provider = await getProviderOrSigner();
+    const signer = await getProviderOrSigner(true); 
+    const salescontract  = new Contract(SALESCONTRACTADDRESS,SALESCONTRACTABI,provider);
+    const owner = await salescontract.owner();
+    if(owner.toLowerCase()===signer){
+        setowner(true);
+    }
+
+}
+
+const connectwallet = async()=>{
+try{
+    await getProviderOrSigner();
+    setwalletConnected(true);
+}catch(err){
+    console.error(err);
+}
+};
+
+const getProviderOrSigner = async (needSigner = false) => {
     
-        else if(!provider){
-            window.alert("No Wallet Detected!");
-        }
+    const provider = await Web3ModalRef.current.connect();
+    const web3Provider = new providers.Web3Provider(provider);
+
     
+    const { chainId } = await web3Provider.getNetwork();
+    if (chainId !== 5) {
+      window.alert("Change the network to goerli");
+      throw new Error("Change network to goerli");
     }
 
-    const getcontractowner = async()=>{
-        const salescontract = new Contract(Sales,salesabi);
-        const owner = await salescontract.owner();
-
-        if(isOwner.toLowerCase() === signer){
-            console.log("Contract Owner!")
-        }
-        else{
-        <Error/>
-        }
+    if (needSigner) {
+      const signer = web3Provider.getSigner();
+      return signer;
     }
+    return web3Provider;
+  }
 
+const onpageload = async()=>{
+    await connectwallet();
+    await getOwner();
 
-    const publishcar = async()=>{
-        const salescontract = new Contract(Sales,salesabi);
-        
+}
+
+  useEffect(()=>{
+    if(!walletConnected){
+      Web3ModalRef.current = new Web3Modal({
+        network:"goerli",
+        providerOptions:{},
+        disableInjectedProvider:false,
+      });
+      onpageload();
     }
+  },);
 
+const renderbutton = async()=>{ 
+    if(!walletConnected){
+        return(
+          <button onClick = {connectwallet}> Connect Wallet</button>  
+        )
+    }
+}
 
-    return(
-        <>
-        <h1> Vende tu auto con nosotros.</h1>
-        <Addcar/>
-        </>
-    )
-
-} 
+return(
+    <>
+{renderbutton}
+    </>
+)
+}
 //<Addcar/>
 export default Vender;

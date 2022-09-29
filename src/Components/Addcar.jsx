@@ -1,5 +1,5 @@
 import React,{useState} from 'react';
-import { Sales,salesabi } from '../constants/index.js';
+import {SALESCONTRACTADDRESS ,SALESCONTRACTABI } from '../constants'
 import { ethers } from 'ethers';
 import Button from "../Components/Button";
 import { signer } from "./WalletConnect.jsx";
@@ -16,17 +16,7 @@ const Marketplace = ()=>{
  
    
 const caradded = ()=>{
- signer === "" ? window.alert("No hay una Billetera Conectada!"):console.log("conectada")
-    const salescontract = new ethers.Contract(
-        Sales,
-        salesabi,
-        signer
-    );
-    salescontract.sellp(name,price,license,bought);
-    setbought=() => bought=true;
-    
-    console.info("funcion corrio");
-    console.info(bought);
+
 
 } 
 function setmyimagen(){

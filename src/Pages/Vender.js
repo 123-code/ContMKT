@@ -1,13 +1,13 @@
 import React,{useState,useEffect,useRef} from 'react';
 import ethers, { Contract }  from 'ethers';
 import Addcar from '../Components/Addcar';
-import {SALESCONTRACTADDRESS,SALESCONTRACTABI} from '../constants/index.js';
+import {SALESCONTRACTADDRESS,SALESCONTRACTABI} from '../constants';
 import detectEthereumProvider from '@metamask/detect-provider';
 import  Web3Modal from "web3modal";
 import { providers } from "ethers";
 
 // mint a car nft as a post to the platform 
-
+ 
 const Vender = ()=>{
     const Web3ModalRef = useRef();
     const [walletConnected,setwalletConnected] = useState(false);
@@ -18,8 +18,8 @@ const getOwner = async()=>{
     const provider = await getProviderOrSigner();
     const signer = await getProviderOrSigner(true); 
     const salescontract  = new Contract(SALESCONTRACTADDRESS,SALESCONTRACTABI,provider);
-    const owner = await salescontract.owner();
-    if(owner.toLowerCase()===signer){
+    const _owner = await salescontract.owner();
+    if(_owner.toLowerCase()===signer){
         setowner(true);
     }
 
@@ -55,7 +55,7 @@ const getProviderOrSigner = async (needSigner = false) => {
 
 const onpageload = async()=>{
     await connectwallet();
-    await getOwner();
+     await getOwner();
 
 }
 
@@ -70,17 +70,20 @@ const onpageload = async()=>{
     }
   },);
 
-const renderbutton = async()=>{ 
+const renderbutton = ()=>{ 
     if(!walletConnected){
         return(
           <button onClick = {connectwallet}> Connect Wallet</button>  
         )
     }
+    else{
+      <span> Wallet connected </span>
+    }
 }
 
 return(
     <>
-{renderbutton}
+{renderbutton()}
     </>
 )
 }

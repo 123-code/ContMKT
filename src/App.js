@@ -7,7 +7,7 @@ import Vender from './Pages/Vender';
 import Navbar from './Components/Navbar';
 import NotFound from './Pages/NotFound';
 import Membership from './Pages/MembershipPage';
-import { Sales,salesabi } from './constants/index.js';
+
  
 function App() {
   return (

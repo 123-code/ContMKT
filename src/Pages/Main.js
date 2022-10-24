@@ -1,5 +1,5 @@
 import React from 'react';
-import WalletConnect from '../Components/WalletConnect.jsx';
+import { Connectbutton } from  "../Components/WalletConnect";
 import Button from '../Components/Button.jsx';
 
 const Main = ()=>{
@@ -7,7 +7,7 @@ const Main = ()=>{
 
     return(
        <div className = "bg-gradient-to-tr from-gray-700 via-gray-900 to-black">
- <div className = "inset-y-5"> <WalletConnect/> </div>
+ <div className = "inset-y-5"> <Connectbutton/> </div>
          <div>
             <h1 className = "text-red-600 font-mono">Carz</h1>
             <h2 className = "font-mono font-size: 1.25rem text-red-600"> The decentralized Car Marketplace </h2>

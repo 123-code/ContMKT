@@ -1,59 +1,71 @@
-import React,{useState,useEffect} from 'react';
-import{ethers }from 'ethers';
-import {FaWallet} from 'react-icons/fa';
+import {React,useRef,useState,useEffect} from 'react';
+import Web3Modal from 'web3modal';
+import ethers from "ethers";
+import { providers } from "ethers";
 
-export let signer = "";
 
-const Connectbutton = ()=>{
-    let [address,setaddress] = useState("Conectar Billetera");
-    let[connected,setconnected] = useState(false);
+ 
+export  function Connectbutton() {
+  const Web3ModalRef = useRef();
+  const [walletConnected,setwalletConnected] = useState(false);
 
-   
-const conectar = async()=>{
-    if(!window.ethereum){
-        alert('No Web3 Detected');
-        console.info('No Web3 Detected');
-        
+
+const connectwallet = async () => {
+    try {
+
+      await getProviderOrSigner();
+      setwalletConnected(true);
+    } catch (err) {
+      console.error(err);
     }
-    else{
-        
-        try{
-           
-            const provider = new ethers.providers.Web3Provider(window.ethereum);
-             signer = provider.getSigner();
-             address = signer.getAddress();
-            //setaddress(address);
-            await window.ethereum.request({method: 'eth_requestAccounts'});
-            
-            console.info(`conectada:${(await address).toString()}`);
-            console.info(`Conectada: ${address.toString()}`);
+  };
 
-            function connect(){
-                setconnected(true);
-            }
+const getProviderOrSigner = async (needSigner = false) => {
+    
+    const provider = await Web3ModalRef.current.connect();
+    const web3Provider = new providers.Web3Provider(provider);
 
-        
-           if(provider){setaddress(`Conectada: ${(await address).toString()}`)
-           connect();
-        }
-           else{setaddress("Conectar Billetera");}
-            
-       
-                //{provider ? `) : setaddress("Conectar Billetera")}
-            
+    
+    const { chainId } = await web3Provider.getNetwork();
+    if (chainId !== 5) {
+      window.alert("Change the network to goerli");
+      throw new Error("Change network to goerli");
+    }
+
+    if (needSigner) {
+      const signer = web3Provider.getSigner();
+      return signer;
+    }
+    return web3Provider;
+  };
+
+    useEffect(()=>{
+      if(!walletConnected){
+        Web3ModalRef.current = new Web3Modal({
+          network:"rinkeby",
+          providerOptions:{},
+          disableInjectedProvider:false,
+        });
+        connectwallet();
+      }
+
+
+    },[])
+  return(
+   <div>
+ 
+        <title> CARZ </title>
+
+<div>
   
-        } catch(err){
-            console.info(err);
-        }
-       
-    }
+{!walletConnected ? (<button onClick={connectwallet} > connect wallet </button>)
+: <button> Connected </button>}
+    
+</div>
+   </div>
+    
+  )
 }
 
 
-return(
-    <>
-        <button className=  "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={conectar}> <FaWallet/> {address}</button>
-    </>
-)
-}  
-export default Connectbutton;
+// import {FaWallet} from 'react-icons/fa';

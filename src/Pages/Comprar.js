@@ -1,12 +1,12 @@
 import React,{useState,useEffect,useRef} from 'react';
-import { ethers } from 'ethers';
+import { ethers,providers,Contract } from 'ethers';
 //import { Sales,salesabi } from '../constants/index.js';
 import Confirmation from './Confirmation.jsx';
+import { Connectbutton } from  "../Components/WalletConnect";
 //import Error from './Components/Error.jsx';
 import Popup from 'reactjs-popup';
-import detectEthereumProvider from '@metamask/detect-provider';
+import{ SALESCONTRACTADDRESS,SALESCONTRACTABI} from '../constants/index';
 import Web3Modal from 'web3modal';
-
 
 
 
@@ -15,11 +15,17 @@ const Comprar = ()=>{
     let [comprar,setcomprar] = useState(false);
 
   
-    const checkwalletconnected = async ()=> {
-      
-    }
-    
+
     const getcontractowner = async()=>{
+        const salescontract = new Contract(SALESCONTRACTADDRESS,SALESCONTRACTABI)
+        const owner = salescontract.owner();
+
+        if(owner){
+          Connectbutton()
+        
+        
+        
+        }
        
     }
     

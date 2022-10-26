@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 const Navbar = ()=>{
     return(
         <>
-<Link to="/" className = "font-mono text-slate-300 pt-6"> 
+<Link to="/" className = "font-mono text-red-600 pt-6"> 
 <li>
 <AiFillHome className ='justify-items-start'/>
 HOME
@@ -17,7 +17,7 @@ HOME
 </Link>
 
 
-<Link to="/member" className = "font-mono text-slate-300 pt-6"> 
+<Link to="/member" className = "font-mono text-red-600 pt-6"> 
 <li>
 <RiGovernmentLine className ='justify-items-start'/>
 BECOME A MEMBER OF CARZ
@@ -25,7 +25,7 @@ BECOME A MEMBER OF CARZ
 </Link>
 
 
-<Link to="/comprar" className = "font-mono text-slate-300 pt-6"> 
+<Link to="/comprar" className = "font-mono text-red-600 pt-6"> 
 <li>
 <MdOutlineSell className ='justify-items-start'/>
 BUY A CAR 
@@ -34,7 +34,7 @@ BUY A CAR
 
 
 
-<Link to="/vender" className = "font-mono text-slate-300 pt-6"> 
+<Link to="/vender" className = "font-mono text-red-600 pt-6"> 
 <li>
 <MdOutlineSell className ='justify-items-start'/>
 SELL A CAR 

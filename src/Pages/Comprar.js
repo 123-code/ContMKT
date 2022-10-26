@@ -6,36 +6,31 @@ import { Connectbutton } from  "../Components/WalletConnect";
 //import Error from './Components/Error.jsx';
 import Popup from 'reactjs-popup';
 import{ SALESCONTRACTADDRESS,SALESCONTRACTABI} from '../constants/index';
-import Web3Modal from 'web3modal';
+
 
 
 
 const Comprar = ()=>{
     const [provider,setprovider] = useState(false);
     let [comprar,setcomprar] = useState(false);
+    const [isowner,setisowner] = useState(true);
 
   
 
     const getcontractowner = async()=>{
-        const salescontract = new Contract(SALESCONTRACTADDRESS,SALESCONTRACTABI)
-        const owner = salescontract.owner();
-
-        if(owner){
-          Connectbutton()
-        
-        
-        
-        }
-       
+        // pass value from connect file 
+try{
+    const provider = Connectbutton.getProviderOrSigner();
+    const salescontract = new Contract(SALESCONTRACTADDRESS,SALESCONTRACTABI,provider)
+    const owner = salescontract.owner();
+    const signer = Connectbutton.getProviderOrSigner(true);
+    if(signer.toLowerCase()=== owner.toLowerCase()){
+        setisowner(true);
     }
-    
-    
-    const buycar = async()=>{
-      
-    
-    }
-    
-
+}
+catch(err){
+console.error(err);
+}
     return(
         <>
          <h1> Comprar </h1>
@@ -46,5 +41,5 @@ const Comprar = ()=>{
 </Popup>
         </>
     )
-}
+}}
 export default Comprar;

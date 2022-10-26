@@ -20,6 +20,8 @@ const connectwallet = async () => {
     }
   };
 
+
+
 const getProviderOrSigner = async (needSigner = false) => {
     
     const provider = await Web3ModalRef.current.connect();
@@ -42,7 +44,7 @@ const getProviderOrSigner = async (needSigner = false) => {
     useEffect(()=>{
       if(!walletConnected){
         Web3ModalRef.current = new Web3Modal({
-          network:"rinkeby",
+          network:"goerli",
           providerOptions:{},
           disableInjectedProvider:false,
         });

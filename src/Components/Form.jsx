@@ -1,8 +1,7 @@
 import React,{useState} from 'react';
 import { ethers } from 'ethers';
-import Gallery from './Gallery.jsx';
 import { providers, Contract } from "ethers";
-import { Sales,salesabi } from '../constants/index.js';
+import {SALESCONTRACTADDRESS,SALESCONTRACTABI} from '../constants';
 import WalletConnect,{signer} from './WalletConnect';
 
 //Car-Marketplace/src/constants/index.js
@@ -11,20 +10,21 @@ import WalletConnect,{signer} from './WalletConnect';
 
 const Form =(props)=>{
 
-    const SalesContract = new Contract(
-        Sales,
-        salesabi,
-        signer
+    const getcontractowner = async()=>{
+        const salescontract = new Contract({SALESCONTRACTADDRESS,SALESCONTRACTABI})
+        const owner = await salescontract.owner();
+        return owner;
+    }
 
-    )
-     
     
+
+
 return(
     <>
     {props==="Comprar"? ()=>{
         
         return (
-             <> <div> <Formcomprar SalesContract/>  </div>  <div> <Gallery/> </div>  </>
+             <> <div> <Formcomprar SalesContract/>  </div>  <div>  </div>  </>
              
              )
         

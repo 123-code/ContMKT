@@ -1,5 +1,5 @@
-require("@nomicfoundation/hardhat-toolbox");
-require("dotenv").config({ path: "./env" });
+require("@nomiclabs/hardhat-waffle");
+require("dotenv").config({ path: ".env" });
 
 
 
@@ -8,7 +8,7 @@ const GOERLI_PRIVATE_KEY = process.env.GOERLI_PRIVATE_KEY;
  
 
 module.exports = {
-  solidity: "0.8.7",
+  solidity: "0.8.9",
   networks: {
     goerli: {
       url:ALCHEMY_API_URL,

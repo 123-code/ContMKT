@@ -11,7 +11,7 @@ module.exports = {
   solidity: "0.8.9",
   networks: {
     goerli: {
-      url:ALCHEMY_API_URL,
+      url: ALCHEMY_API_URL,
       accounts: [GOERLI_PRIVATE_KEY],
     },
   },

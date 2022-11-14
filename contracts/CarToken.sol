@@ -11,10 +11,13 @@ contract MyToken is ERC721, ERC721Burnable {
      Counters.Counter private _tokenIdCounter;
     uint256 count = 0;
 
+    
 
-    constructor(address) ERC721("CarToken", "CTK") {
+
+    constructor() ERC721("CarToken", "CTK") {
 
     }
+
 
      function safeMint(address to) public   {
         uint256 tokenId = _tokenIdCounter.current();
@@ -23,8 +26,5 @@ contract MyToken is ERC721, ERC721Burnable {
         count+=1;
     }
 
-     function transferFrom(address _from ,address _to,uint256 _id) public override {
 
-    }
 } 
-

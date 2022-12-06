@@ -3,16 +3,16 @@ require("dotenv").config({ path: ".env" });
 
 
 
-const ALCHEMY_API_URL = process.env.ALCHEMY_API_URL;
-const GOERLI_PRIVATE_KEY = process.env.GOERLI_PRIVATE_KEY;
+const POLYGON_MUMBAI_URL = process.env.POLYGON_MUMBAI_URL;
+const MUMBAI_PRIVATE_KEY = process.env.MUMBAI_PRIVATE_KEY;
  
 
 module.exports = {
   solidity: "0.8.9",
   networks: {
-    goerli: {
-      url: ALCHEMY_API_URL,
-      accounts: [GOERLI_PRIVATE_KEY],
+    mumbai: {
+      url: POLYGON_MUMBAI_URL,
+      accounts: [MUMBAI_PRIVATE_KEY],
     },
   },
 };

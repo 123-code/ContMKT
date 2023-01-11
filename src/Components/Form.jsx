@@ -61,18 +61,18 @@ export default Form;
 
         <div>
             <h2>Marca</h2>
-            <input value={valuem} type="text" placeholder="Marca" onChange={event=>{let value = React.Event.Form.target(event); setvaluem(_=>value)}}/>
+            <input value={valuem} type="text" placeholder="Marca" onChange={(e)=>setvaluem(e.target.value)}/> 
             
             </div>
            
             <div>
             <h2>Precio</h2>
-            <input value={valuep} type="text" placeholder="Precio" onChange={event=>{let value = React.Event.Form.target(event); setvaluep(_=>value)}}/>
+            <input value={valuep} type="text" placeholder="Precio" onChange={(e)=>setvaluep(e.target.value)}/>
             </div>
 
             <div>
             <h2>Placa</h2>
-            <input  value={valuepl} type="text" placeholder="Placa" onChange={event=>{let value = React.Event.Form.target(event); setvaluepl(value)}}/>
+            <input  value={valuepl} type="text" placeholder="Placa" onChange={(e)=>setvaluepl(e.target.value)}/>
 
             <button onClick={()=>{ try {props.sellp(valuem,valuep,valuepl)} catch(err){<h2> No pudimos publicar tu auto !</h2>}}}> Publicar </button>
             </div>

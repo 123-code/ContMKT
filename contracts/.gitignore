@@ -1,4 +1,6 @@
 node_modules/
+lib/
+forge-std/
 dist/
 build/
 *.log

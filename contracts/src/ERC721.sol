@@ -15,7 +15,9 @@ contract MyToken is ERC721URIStorage {
 
 event Burned(address indexed owner, uint256 indexed tokenId);
 
+/*
 
+*/
 function mint(address _to,string memory TokenURI) external returns(uint){
 _tokenIds.increment();
 uint newItemID = _tokenIds.current();

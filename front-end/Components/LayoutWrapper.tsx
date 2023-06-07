@@ -1,5 +1,5 @@
 import siteMetadata from '@/data/siteMetadata'
-import { ConnectButton } from '@rainbow-me/rainbowkit';
+import ConnectButton from '@/Components/ConnectButton'
 //import Logo from '@/data/logo.svg'
 import Link from './Link'
 import SectionContainer from './SectionContainer'
@@ -29,10 +29,10 @@ const LayoutWrapper = ({ children }) => {
                 // eslint-disable-next-line react/jsx-key
                 <li >
                     {link.title}
-                </li>
+                </li>  
                 ))}
             </div>
-         
+        
             <MobileNav />
           </div>
         </header>

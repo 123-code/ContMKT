@@ -1,5 +1,5 @@
 import siteMetadata from '@/data/siteMetadata'
-
+import { ConnectButton } from '@rainbow-me/rainbowkit';
 //import Logo from '@/data/logo.svg'
 import Link from './Link'
 import SectionContainer from './SectionContainer'

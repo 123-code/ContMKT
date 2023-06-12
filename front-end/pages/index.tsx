@@ -4,14 +4,34 @@ import Tag from '@/components/Tag'
 import siteMetadata from '@/data/siteMetadata'
 //import { getAllFilesFrontMatter } from '@/lib/mdx'
 import { ConnectButton } from '@rainbow-me/rainbowkit';
+import { readContracts } from '@wagmi/core'
+import { MyTokenABI,MyTokenGoerliAddress } from '../ABIs/MyTokenABI'
 
-import NewsletterForm from '@/components/NewsletterForm'
 
 const MAX_DISPLAY = 5
 
 
 
 export default function Home({  }) {
+
+  const GetMyTokenBalance = async()=>{
+
+    const MyTokencontract = {
+      address:MyTokenGoerliAddress,
+      abi:MyTokenABI
+    }
+
+    const data = await readContracts({
+      contracts:[
+        {
+          ...MyTokencontract,
+          functionName: 'balanceOf',
+        },
+      ],
+      
+    })
+
+  }
   return (
     <>
       <div className="divide-y divide-gray-200 dark:divide-gray-700">

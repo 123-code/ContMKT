@@ -1,5 +1,5 @@
 
-export const MyTokenGoerliAddress = '0xfB1aa025a7b225af55DCC7d9e853C63F0e743E60'
+export const MyTokenMumbaiAddress = '0x15730564babFf72dA9cdB70Ea641Ec628e478D91'
 
     export const MyTokenABI =  [
       {

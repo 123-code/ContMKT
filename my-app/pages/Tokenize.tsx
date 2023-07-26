@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { createWalletClient } from 'viem'
+import { createWalletClient, http } from 'viem'
 import { goerli } from 'viem/chains'
 import { useAccount } from 'wagmi';
 import { ethers } from "ethers";
@@ -9,7 +9,24 @@ import { Button } from "../Components/ConnectButton";
 
 export default function TokenizePage() {
 
-  const { address, isConnecting, isDisconnected, connector } = useAccount();
+  const { account, isConnecting, isDisconnected, connector } = useAccount();
+
+  const client = createWalletClient({
+    chain: goerli,
+    transport: http()
+  })
+
+
+
+  const { request } = await client.simulateContract({
+    address: ERC721Address,
+    abi: ERC721ABI,
+    functionName: 'mint',
+    args: ['account_address', 1],
+    account,
+  })
+  const [account_address] = await client.getAddresses() 
+
 
   const [signer, setSigner] = useState();
   const [contract, setContract] = useState();

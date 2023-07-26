@@ -1,3 +1,4 @@
+import {useEffect} from 'react'
 import '@/styles/globals.css'
 import type { AppProps } from 'next/app'
 import '@/styles/globals.css'
@@ -24,7 +25,7 @@ const { chains, publicClient } = configureChains(
 
 const { connectors } = getDefaultWallets({
   appName: 'My RainbowKit App',
-  projectId: 'YOUR_PROJECT_ID',
+  projectId: '4a22daadfc8f2c6d599a993403314255',
   chains
 });
 

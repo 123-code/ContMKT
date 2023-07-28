@@ -1,71 +1,76 @@
-import { useState, useEffect } from "react";
-import { createWalletClient, http } from 'viem'
+import React, { useEffect, useState } from 'react'
+import {
+  Address,
+  Hash,
+  TransactionReceipt,
+  createPublicClient,
+  createWalletClient,
+  custom,
+  http,
+  stringify,
+} from 'viem'
 import { goerli } from 'viem/chains'
-import { useAccount } from 'wagmi';
-import { ethers } from "ethers";
+import 'viem/window'
+import {ERC721Address,ERC721ABI} from '../ABIs/ERC721'
 
-import { ERC721ABI, ERC721Address } from "../ABIs/ERC721.ts";
-import { Button } from "../Components/ConnectButton";
+const publicClient = createPublicClient({
+  chain: goerli,
+  transport: http(),
+})
+const walletClient = createWalletClient({
+  chain: goerli,
+  transport: custom(window.ethereum!),
+})
 
-export default function TokenizePage() {
+export default function Tokenize() {
 
-  const { account, isConnecting, isDisconnected, connector } = useAccount();
-
-  const client = createWalletClient({
-    chain: goerli,
-    transport: http()
-  })
-
-
-
-  const { request } = await client.simulateContract({
-    address: ERC721Address,
-    abi: ERC721ABI,
-    functionName: 'mint',
-    args: ['account_address', 1],
-    account,
-  })
-  const [account_address] = await client.getAddresses() 
+  const [account, setAccount] = useState<Address>()
+  const [hash, setHash] = useState<Hash>()
+  const [receipt, setReceipt] = useState<TransactionReceipt>()
 
 
-  const [signer, setSigner] = useState();
-  const [contract, setContract] = useState();
 
-  useEffect(() => {
-    async function getSigner() {
-      if(connector) {
-        const signer = await connector.getSigner();
-        setSigner(signer);
-
-        const contract = new ethers.Contract(
-          ERC721Address,
-          ERC721ABI,
-          signer  
-        );
-        setContract(contract);
-      }
-    }
-    getSigner();
-  }, [connector]);
-
-  async function mintToken() {
-    if(contract) {
-      await contract.mint(address, 1); 
-    }
+    const connect = async () => {
+    const [address] = await walletClient.requestAddresses()
+    setAccount(address)
   }
 
-  return (
-    <>
-      <h1>Tokenize</h1>
+//address _to,string memory TokenURI
+  const mint = async () => {
+    if(!account){
+       <button>Connect</button>
+    }
+      
+    const result = await publicClient.simulateContract({
+      functionName: 'mint',
+      account,
+      abi: ERC721ABI,
+      address: ERC721Address,
+      args: [account,'www.google.com'] 
+    })
+    const { request } = result 
+    const hash = await walletClient.writeContract(request)
+    setHash(hash)
+    }
 
-      {isConnecting && <p>Connecting...</p>}
+// provides transaction details 
+    useEffect(() => {
+      ;(async () => {
+        if (hash) {
+          const receipt = await publicClient.waitForTransactionReceipt({ hash })
+          setReceipt(receipt)
+        }
+      })()
+    }, [hash, publicClient])
 
-      {isDisconnected && <Button />}
 
-      {address && <div>{address}</div>}
+    return(
+      <>
+      {account && <button onClick={mint}>Mint</button>}
+      </>
+    )
+  
+  }
 
-      {contract && <Button onClick={mintToken}>Mint Token</Button>}
-
-    </>
-  )
-}
+ 
+  

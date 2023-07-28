@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import dynamic from 'next/dynamic'
 import {
   Address,
   Hash,
@@ -11,6 +12,7 @@ import {
 } from 'viem'
 import { goerli } from 'viem/chains'
 import 'viem/window'
+import {Button} from '../Components/ConnectButton'
 import {ERC721Address,ERC721ABI} from '../ABIs/ERC721'
 
 const publicClient = createPublicClient({
@@ -21,6 +23,7 @@ const walletClient = createWalletClient({
   chain: goerli,
   transport: custom(window.ethereum!),
 })
+
 
 export default function Tokenize() {
 
@@ -66,7 +69,8 @@ export default function Tokenize() {
 
     return(
       <>
-      {account && <button onClick={mint}>Mint</button>}
+      <h1> Tokenize page </h1>
+      {account ? <button onClick={mint}>Mint</button> : <Button/>}
       </>
     )
   
